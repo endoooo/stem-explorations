@@ -23,11 +23,19 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-200">
       <div className="flex items-start max-w-2xl h-full px-4 py-10 mx-auto">
-        <Controls
-          className="flex-1 sticky top-10"
-          currentGene={currentGene}
-          onSelect={(allele) => setCurrentGene(`${currentGene}${allele}`)}
-        />
+        <div className="flex-1 sticky top-10">
+          <Controls
+            isFirstPairEnabled={currentGene.length === 0}
+            isSecondPairEnabled={currentGene.length === 2}
+            onSelect={(allele) => setCurrentGene(`${currentGene}${allele}`)}
+          />
+          <Controls
+            className="mt-10"
+            isFirstPairEnabled={currentGene.length === 1}
+            isSecondPairEnabled={currentGene.length === 3}
+            onSelect={(allele) => setCurrentGene(`${currentGene}${allele}`)}
+          />
+        </div>
         <List
           className="flex-1"
           currentGene={currentGene}
